@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE validators PUBLIC 
+  		"-//Apache Struts//XWork Validator 1.0.2//EN"
+  		"http://struts.apache.org/dtds/xwork-validator-1.0.2.dtd">
+<validators>
+	<field name="user.name">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message key="error.reg.name.null"></message>
+		</field-validator>
+	</field>
+	<field name="user.pwd">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message>${getText("error.reg.passwd.null")}</message>
+		</field-validator>		
+	</field>
+	<field name="user.repwd">
+		<field-validator type="fieldexpression">
+			<!-- 指定逻辑表达式 -->
+			<param name="expression">(user.pwd eq user.repwd)</param>
+			<message key="error.reg.repasswd.erro"></message>
+		</field-validator>
+	</field>
+	<field name="user.phone">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message>${getText("error.reg.phone.null")}</message>
+		</field-validator>
+		<field-validator type="regex">
+			<param name="expression"><![CDATA[(\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$]]></param>
+			<message key="error.reg.phone.erro"></message>
+		</field-validator>
+	</field>
+	<field name="user.email">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message>${getText("error.reg.email.null")}</message>
+		</field-validator>
+		<field-validator type="email">
+			<message>${getText("error.reg.email.erro")</message>
+		</field-validator>
+	</field>
+	<field name="user.sex">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message>${getText("error.reg.userSex.null")}</message>
+		</field-validator>
+	</field>
+</validators>

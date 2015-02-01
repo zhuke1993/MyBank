@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html lang="en" class="ie6 ielt7 ielt8 ielt9"><![endif]-->
+<!--[if IE 7 ]><html lang="en" class="ie7 ielt8 ielt9"><![endif]-->
+<!--[if IE 8 ]><html lang="en" class="ie8 ielt9"><![endif]-->
+<!--[if IE 9 ]><html lang="en" class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html>
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>登陆</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+<link href="css/site.css" rel="stylesheet">
+<script src="js/jquery.min.js"></script>
+<script type="text/javascript">
+
+	$(function() {
+		$("#name").blur(function() {
+			if ($("#name").val() == "") {
+				$("#lname").text("用户名不能为空");
+			} else {
+				$("#lname").text("");
+			}
+
+		});
+		$("#pwd").blur(function() {
+			if ($("#pwd").val() == "") {
+				$("#lpwd").text("密码不能为空");
+			} else {
+				$("#lpwd").text("");
+			}
+
+		});
+
+	});
+
+	function check() {
+		if ($("#name").val() == "") {
+			$("#lname").text("用户名不能为空");
+			return false;
+		}
+		if ($("#pwd").val() == "") {
+			$("#lpwd").text("密码不能为空");
+			return false;
+		}
+		return true;
+	}
+	//重新获取验证码
+	 function myReload(){
+         document.getElementById("createCheckCode").src=document.getElementById("createCheckCode").src + "?nocache="+new Date().getTime();  
+     }  
+</script>
+</head>
+<body>
+	<div id="login-page" class="container">
+		<h1>朱帅要给你生猴子</h1>
+		<form id="login-form" class="well" action="login">
+			用户名：<input type="text" id="name" placeholder="Email" /><label
+				style="color: red" id="lname"></label><br />
+			密&nbsp;&nbsp;&nbsp;&nbsp;码：<input type="password" id="pwd"
+				placeholder="Password" /><label id="lpwd" style="color: red"></label><br />
+				
+			验证码:&nbsp;&nbsp;<input name="checkCode" type="text" id="checkCode" maxlength="4" style="width: 60px">  
+        	<img id="createCheckCode" src="pngValidate">  
+       		<a href="#" onClick="myReload()">换一个</a>  
+       		
+			<label class="checkbox"> <input type="checkbox" />记住我
+			</label>
+			<button type="submit" id="login" onclick="return check();">登陆</button>
+			<button type="submit" id="forgetpwd">忘记密码</button>
+		</form>
+	</div>
+</body>
+</html>

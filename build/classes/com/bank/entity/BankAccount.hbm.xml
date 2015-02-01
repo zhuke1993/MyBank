@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.bank.entity.BankAccount" table="bankaccount">
+        <id name="ba_id" type="int">
+            <column name="ba_id" />
+            <generator class="increment" />
+        </id>
+        <property name="ba_name" type="java.lang.String">
+            <column name="ba_name" />
+        </property>
+        <property name="ba_password" type="java.lang.String">
+            <column name="ba_password" />
+        </property>
+        <property name="ba_sex" type="java.lang.String">
+            <column name="ba_sex" />
+        </property>
+        <property name="ba_tel" type="java.lang.String">
+            <column name="ba_tel" />
+        </property>
+        <property name="ba_email" type="java.lang.String">
+            <column name="ba_email" />
+        </property>
+         <property name="ba_balance" type="float">
+            <column name="ba_balance" />
+        </property>
+         <property name="ba_groupId" type="int">
+            <column name="ba_groupId" default="1"/>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.bank.entity.BankRecord" table="BankRecord">
+        <id name="br_action" type="java.lang.String">
+            <column name="br_action" />
+        </id>
+        <property name="br_dateTime" type="java.lang.String">
+            <column name="br_dateTime" />
+        </property>
+        <property name="br_fromId" type="int">
+            <column name="br_fromId" />
+        </property>
+        <property name="br_toId" type="int">
+            <column name="br_toId" />
+        </property>
+        <property name="br_money" type="float">
+            <column name="br_money" />
+        </property>
+    </class>
+</hibernate-mapping>

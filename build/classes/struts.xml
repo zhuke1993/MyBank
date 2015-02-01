@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+
+<struts>
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
+	<constant name="struts.custom.i18n.resources" value="globalMessages"></constant>
+
+	<package name="struts" extends="struts-default" namespace="/">
+		<!-- <interceptors>
+			<interceptor name="SessionInterceptor"
+				class="com.bank.action.interceptor.SessionInterceptor" />
+		</interceptors> -->
+		
+		<global-results>
+			<result name="loginPage">/zhushuai/login.jsp</result>
+			<result name="Error">/errorAdmin.jsp</result>
+			<result name="abilityError">/abilityError.jsp</result>
+		</global-results>
+		
+		
+		<action name="modifyUser" class="com.bank.action.ModifyUser"></action>
+		<action name="deleteUser" class="com.bank.action.DeleteUser"></action>
+		<action name="findUser" class="com.bank.action.FindUser"></action>
+		<action name="register1" class="com.bank.action.Register"></action>
+		
+		
+		<action name="pngValidate" class="com.bank.action.PngValidate"></action>
+		<action name="checkValidate" class="com.bank.action.CheckValidate"></action>
+
+		<action name="isNameExt" class="com.bank.action.IsNameExt"></action>
+
+
+		<!-- 注册验证 -->
+		<action name="regValidate" class="com.bank.action.validateAction.RegistValidate">
+			<result name="input">/zhushuai/register.jsp</result>
+			<result type="chain">register</result>
+		</action>
+		<!-- 注册 -->	
+		<action name="register" class="com.bank.action.RegisterAction">
+			<result type="redirect" name="success">/zhushuai/login.jsp</result>
+			<result type="redirect" name="input">/zhushuai/register.jsp</result>
+		</action>
+
+		<!--登陆验证  -->
+		<action name="loginValidate" class="com.bank.action.validateAction.LoginValidate">
+			<result name="input">/zhushuai/login.jsp</result>
+			<result type="chain">login</result>
+		</action>
+		<!-- 登录 -->
+		<action name="login" class="com.bank.action.LoginAction">
+			<result type="redirect" name="admin">/admin/admin.jsp</result>
+			<result type="redirect" name="normal">/zhushuai/index.jsp</result>
+			<result type="redirect" name="input">/zhushuai/login.jsp</result>
+		</action>
+				
+		<!-- 存款 -->
+		<action name="smoneyValidate" class="com.bank.action.validateAction.MoneyValidate">
+			<result name="input">/zhushuai/save.jsp</result>
+			<result type="chain">saveMoney</result>
+		</action>
+		<action name="saveMoney" class="com.bank.action.BankAction" method="saveMoney">
+			<!-- <result name="invalid.token">/zhushuai/wrong.jsp</result> -->
+			<result name="saveSuccess" type="chain">selectBalance</result>
+			<!-- <interceptor-ref name="defaultStack"/>
+			<interceptor-ref name="tokenSession"/>
+			<interceptor-ref name="SessionInterceptor"/> -->
+		</action>
+		
+		<!-- 取款 -->
+		<action name="fmoneyValidate" class="com.bank.action.validateAction.MoneyValidate">
+			<result name="input">/zhushuai/fetch.jsp</result>
+			<result type="chain">fetchMoney</result>
+		</action>
+		<action name="fetchMoney" class="com.bank.action.BankAction"
+			method="fetchMoney">
+			<!-- <result name="invalid.token">/zhushuai/wrong.jsp</result> -->
+			<result name="fetchSuccess" type="chain">selectBalance</result>
+			<result name="fetchError">/zhushuai/fechError.jsp</result>
+		<!-- 	<interceptor-ref name="defaultStack"/>
+			<interceptor-ref name="tokenSession"/>
+			<interceptor-ref name="SessionInterceptor"/> -->
+		</action>
+		
+		<!-- 转账 -->
+		<action name="transform" class="com.bank.action.BankAction" method="transform">
+			<result name="transformSuccess" type="chain">selectBalance</result>
+			<result name="transformError">/zhushuai/transformError.jsp</result>
+		</action>
+		
+		<!-- 查询余额 -->
+		<action name="selectBalance" class="com.bank.action.BankAction"
+			method="selectBalance">
+			<result name="selectBalance">/zhushuai/tradeSuccess.jsp</result>
+		<!-- 	<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="SessionInterceptor" /> -->
+		</action>
+		
+		<!-- 查询交易信息 -->
+		<action name="selectTradeInfo" class="com.bank.action.BankAction" method="tradeInfo">
+			<result name="selectTradeInfo">/zhushuai/selectTradeInfo.jsp</result>
+		</action>	
+		
+		<!--查询用户信息 -->
+		<action name="selectUser" class="com.bank.action.BankAction" method="selectUser">
+			<result name="selectUser">/zhushuai/user.jsp</result>
+	<!-- 		<interceptor-ref name="defaultStack"/>
+			<interceptor-ref name="SessionInterceptor"/> -->
+		</action>
+		
+		<!-- 修改用户信息 -->
+		<action name="updateUserValidate" class="com.bank.action.validateAction.UpdateUserValidate">
+			<result name="input">/zhushuai/set.jsp</result>
+			<result type="chain">updateUser</result>
+		</action>
+		<action name="updateUser" class="com.bank.action.BankAction" method="updateUser">
+			<result name="updateSuccess" >/zhushuai/set.jsp</result>
+	<!-- 		<interceptor-ref name="defaultStack"/>
+			<interceptor-ref name="SessionInterceptor"/> -->
+		</action>
+		
+		<!-- 退出系统 -->
+		<action name="logout" class="com.bank.action.BankAction" method="logout">
+			<result name="logout">/zhushuai/login.jsp</result>
+		</action>
+		
+		<!-- 注销用户 -->
+		<action name="deleteUserInfo" class="com.bank.action.BankAction" method="deleteUser">
+			<result name="deleteSuccess">/zhushuai/deleteSuccess.jsp</result>
+			<result name="deleteError">/zhushuai/deleteError.jsp</result>
+		</action>
+	</package>
+
+</struts>
